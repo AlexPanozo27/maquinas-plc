@@ -1,0 +1,475 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Máquinas con PLC | Sistemas Embebidos UNIFRANZ</title>
+<meta name="description" content="Portón automático, guillotina industrial y cinta clasificadora con compactadora: dos laboratorios y el proyecto del semestre de Programación de Sistemas Embebidos, con simuladores interactivos.">
+<link rel="icon" href="logo-unifranz.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="nav">
+  <nav class="nav-in" aria-label="Principal">
+    <a class="brand" href="#inicio"><img src="logo-unifranz.png" alt="Logo de la Universidad Privada Franz Tamayo"><span>Sistemas Embebidos</span></a>
+    <a class="lnk keep" href="#proyectos">Proyectos</a>
+    <a class="lnk" href="#porton">Portón</a>
+    <a class="lnk" href="#guillotina">Guillotina</a>
+    <a class="lnk" href="#cinta">Cinta</a>
+    <a class="lnk keep" href="#equipo">Equipo</a>
+    <a class="btn btn-main btn-sm cta" href="#porton">Probar simuladores</a>
+  </nav>
+</header>
+
+<main id="inicio">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>Tres máquinas que piensan con un PLC</h1>
+      <p class="lead">Un portón, una guillotina y una cinta que separa metal de plástico y aplasta las latas. Las armamos, las programamos en Grafcet y escalera, y aquí puedes manejarlas tú.</p>
+      <div class="actions">
+        <a class="btn btn-main" href="#proyectos">Ver los proyectos</a>
+        <a class="btn btn-ghost" href="#cinta">Probar la cinta</a>
+      </div>
+      <div class="course"><img src="logo-unifranz.png" alt=""> Programación de Sistemas Embebidos, UNIFRANZ</div>
+    </div>
+    <div class="stage" aria-label="Animación de una cinta que clasifica piezas">
+      <span class="sticker">Proyecto del semestre</span>
+      <svg id="heroSvg" viewBox="0 0 600 550" role="img" aria-label="Piezas de plástico siguen la cinta; las de metal se desvían y se compactan">
+        <!-- belt 2 vertical -->
+        <rect x="282" y="70" width="40" height="300" rx="10" fill="#2A2670"/>
+        <!-- belt 1 -->
+        <rect x="20" y="368" width="560" height="44" rx="12" fill="#2A2670"/>
+        <g id="beltDots" fill="#6F62FF"></g>
+        <!-- bin plastic -->
+        <rect x="500" y="318" width="90" height="108" rx="14" fill="#FF7A2F" opacity=".95"/>
+        <text x="545" y="378" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="15" fill="#17163B">Plástico</text>
+        <!-- sensor -->
+        <rect x="136" y="318" width="34" height="30" rx="8" fill="#FFC736"/>
+        <rect x="146" y="346" width="14" height="14" fill="#FFC736"/>
+        <circle cx="153" cy="333" r="5" fill="#17163B"/>
+        <!-- rack -->
+        <rect id="heroRack" x="296" y="420" width="12" height="60" rx="3" fill="#12C9A0"/>
+        <rect x="270" y="470" width="64" height="40" rx="10" fill="#12C9A0"/>
+        <!-- compactor -->
+        <rect x="330" y="82" width="12" height="56" rx="3" fill="#17163B" opacity=".5"/>
+        <rect id="heroPlate" x="232" y="88" width="24" height="44" rx="6" fill="#FF5B6E"/>
+        <rect x="170" y="100" width="62" height="20" rx="6" fill="#FF5B6E" opacity=".8"/>
+        <rect x="262" y="14" width="80" height="44" rx="12" fill="#12C9A0"/>
+        <text x="302" y="42" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="14" fill="#17163B">Metal</text>
+        <g id="heroPieces"></g>
+      </svg>
+      <img class="stage-photo" src="cinta-general.jpg" alt="La cinta clasificadora real: banda naranja, caja de control y compactadora">
+    </div>
+  </div>
+</section>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>OpenPLC Editor<i></i>Arduino Nano<i></i>Grafcet<i></i>Diagrama de escalera<i></i>Temporizador TON<i></i>Contador CTU<i></i>Sensor inductivo<i></i>Servomotor<i></i>Driver A4988<i></i>Relés<i></i></span>
+    <span>OpenPLC Editor<i></i>Arduino Nano<i></i>Grafcet<i></i>Diagrama de escalera<i></i>Temporizador TON<i></i>Contador CTU<i></i>Sensor inductivo<i></i>Servomotor<i></i>Driver A4988<i></i>Relés<i></i></span>
+  </div>
+</div>
+
+<section id="proyectos" class="wrap">
+  <div class="section-head rv">
+    <h2>Dos laboratorios y un proyecto</h2>
+    <p>Cada uno tiene su resumen, fotos del montaje real, los programas y un simulador para probar la lógica sin tocar el hardware.</p>
+  </div>
+  <div class="cards">
+    <a class="pcard sun rv" href="#porton">
+      <div class="ph"><img src="porton-frente.jpg" alt="Maqueta del portón con lámina de reja y motorreductor" loading="lazy"></div>
+      <div class="tx"><span class="tag">Laboratorio 1</span><h3>Portón automático</h3><p>Abre, se cierra solo a los 30 s y se detiene con una emergencia que solo se libera con Reset.</p><span class="go">Ver y probar <b>→</b></span></div>
+    </a>
+    <a class="pcard coral rv" href="#guillotina">
+      <div class="ph"><img src="guillotina-cinta.jpg" alt="Cinta de la guillotina con sensor inductivo y placa de control" loading="lazy"></div>
+      <div class="tx"><span class="tag">Laboratorio 2</span><h3>Guillotina industrial</h3><p>Corta durante 3 s, cuenta 10 piezas y avisa con un piloto que parpadea.</p><span class="go">Ver y probar <b>→</b></span></div>
+    </a>
+    <a class="pcard mint rv" href="#cinta">
+      <div class="ph"><img src="cinta-desvio.jpg" alt="Mecanismo de desvío, Arduino con shield y compactadora" loading="lazy"></div>
+      <div class="tx"><span class="tag">Proyecto del semestre</span><h3>Cinta clasificadora</h3><p>Separa metal de plástico, empuja el metal a una segunda banda y lo aplasta 4 cm.</p><span class="go">Ver y probar <b>→</b></span></div>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== PORTÓN ===================== -->
+<section id="porton" class="band sun" aria-labelledby="t-porton">
+ <div class="wrap">
+  <div class="band-top">
+    <div class="rv">
+      <span class="kicker">Laboratorio 1</span>
+      <h2 id="t-porton">Portón automático</h2>
+      <p class="desc">Un portón corredizo a escala sobre un riel de aluminio, movido por un motorreductor con piñón y cremallera. Lo gobierna una placa OpenPLC MicroPLC Nano V1.2, programada en escalera a partir del Grafcet que resolvió el docente en clase.</p>
+      <p class="desc">Se abre con un pulsador, se cierra solo a los 30 segundos y avisa su estado con tres luces. Una emergencia lo detiene; para seguir hay que presionar Reset, que lo cierra y lo devuelve al inicio.</p>
+    </div>
+    <div class="hero-photo rv">
+      <img src="porton-energizado.jpg" alt="Maqueta del portón energizada con caja de mando de tres pulsadores" data-zoom data-group="porton" data-cap="Maqueta energizada: PLC con sus LEDs encendidos, caja de mando con tres pulsadores y portón sobre su riel.">
+      <div class="badge-float">7 etapas<small>Grafcet pasado a escalera</small></div>
+    </div>
+  </div>
+
+  <h3 class="subtitle">Cómo funciona</h3>
+  <div class="steps">
+    <div class="step rv"><h4>Cerrado</h4><p>Luz roja. Espera que alguien presione el pulsador verde.</p></div>
+    <div class="step rv"><h4>Abriendo</h4><p>Luz amarilla mientras el motor mueve el portón hasta el final de carrera de abierto.</p></div>
+    <div class="step rv"><h4>Abierto</h4><p>Luz verde y arranca un temporizador de 30 s.</p></div>
+    <div class="step rv"><h4>Cerrando</h4><p>Cierra por pulsador o a los 30 s, otra vez con luz amarilla, y vuelve a rojo.</p></div>
+  </div>
+  <p class="note rv">Con el paro de emergencia todo se apaga y el portón no se mueve hasta que se presiona Reset.</p>
+
+  <h3 class="subtitle">Simulador del portón</h3>
+  <div class="sim" id="simPorton">
+    <div class="sim-head"><h3>Caja de mando virtual</h3><span class="live">Programa corriendo</span></div>
+    <p class="sim-sub">Presiona los tres pulsadores como en la maqueta. La lógica es la misma escalera del informe, escalón por escalón.</p>
+    <div class="sim-grid">
+      <div>
+        <div class="scene">
+          <svg viewBox="0 0 720 300" role="img" aria-label="Portón corredizo que se abre y se cierra">
+            <defs>
+              <pattern id="bars" width="20" height="10" patternUnits="userSpaceOnUse"><rect width="20" height="10" fill="#E9EEF8"/><rect x="8" width="4" height="10" fill="#8C97B5"/></pattern>
+            </defs>
+            <rect x="0" y="252" width="720" height="48" fill="#C9D3EC"/>
+            <rect x="388" y="120" width="300" height="132" rx="8" fill="#D9E0F3"/>
+            <text x="538" y="190" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="14" fill="#8C97B5">muro</text>
+            <rect x="100" y="250" width="590" height="8" rx="4" fill="#A9B3CE"/>
+            <rect x="52" y="60" width="50" height="192" rx="8" fill="#6B76A0"/>
+            <rect x="388" y="196" width="60" height="54" rx="10" fill="#FFC736" stroke="#17163B" stroke-width="3"/>
+            <g id="pgGate">
+              <rect x="0" y="96" width="280" height="154" rx="6" fill="url(#bars)" stroke="#17163B" stroke-width="3"/>
+              <rect x="0" y="96" width="280" height="10" fill="#17163B" opacity=".75"/>
+              <rect x="0" y="150" width="280" height="8" fill="#17163B" opacity=".25"/>
+            </g>
+            <rect id="pgFCC" x="104" y="236" width="8" height="14" rx="2" fill="#C7CCDD"/>
+            <rect id="pgFCA" x="372" y="236" width="8" height="14" rx="2" fill="#C7CCDD"/>
+            <rect x="60" y="24" width="34" height="96" rx="12" fill="#17163B"/>
+            <circle id="pgLR" cx="77" cy="41" r="10" fill="#4A2A2F"/>
+            <circle id="pgLY" cx="77" cy="72" r="10" fill="#4D4420"/>
+            <circle id="pgLG" cx="77" cy="103" r="10" fill="#1F4A33"/>
+            <text x="116" y="286" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">FCC</text>
+            <text x="354" y="286" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">FCA</text>
+            <text id="pgPos" x="640" y="286" text-anchor="end" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72"></text>
+          </svg>
+        </div>
+        <div class="msg" id="pgMsg" role="status" aria-live="polite"></div>
+        <div class="controls">
+          <button class="push g" id="pgP"><i></i>P: Pulsador</button>
+          <button class="push r" id="pgE"><i></i>Emergencia</button>
+          <button class="push y" id="pgR"><i></i>Reset</button>
+          <span class="seg" role="group" aria-label="Velocidad de la simulación">
+            <button data-speed="1" aria-pressed="true">x1</button><button data-speed="5" aria-pressed="false">x5</button><button data-speed="10" aria-pressed="false">x10</button>
+          </span>
+        </div>
+        <p class="help">Prueba esto: abre, deja pasar los 30 s (usa x10 para acelerar), presiona Emergencia en pleno movimiento y recupera con Reset.</p>
+      </div>
+      <div class="side">
+        <div class="box"><h4>Etapa activa del Grafcet</h4><div class="chips" id="pgChips"></div>
+          <p class="help" style="margin-top:10px">Temporizador TIM1 (30 s)</p><div class="bar"><i id="pgTim"></i></div></div>
+        <div class="box"><h4>Entradas del PLC</h4><div class="leds" id="pgIn"></div></div>
+        <div class="box"><h4>Salidas del PLC</h4><div class="leds" id="pgOut"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subtitle">La maqueta real</h3>
+  <div class="gallery">
+    <figure data-zoom data-group="porton" tabindex="0" data-cap="Maqueta del portón vista de frente: lámina con reja, riel de aluminio y motorreductor con cremallera."><img src="porton-frente.jpg" alt="Portón visto de frente con su reja y el motorreductor" loading="lazy"><figcaption>Portón de frente: reja, riel y motorreductor.</figcaption></figure>
+    <figure data-zoom data-group="porton" tabindex="0" data-cap="Maqueta vista por detrás: carcasa del motorreductor y cremallera sobre el portón."><img src="porton-atras.jpg" alt="Portón visto por detrás con la cremallera" loading="lazy"><figcaption>Por detrás: la cremallera sobre el portón.</figcaption></figure>
+    <figure data-zoom data-group="porton" tabindex="0" data-cap="Maqueta energizada: PLC con sus LEDs encendidos, caja de mando con tres pulsadores y portón sobre su riel."><img src="porton-energizado.jpg" alt="Maqueta energizada con LEDs de la placa encendidos" loading="lazy"><figcaption>Energizada, con los LEDs de la placa.</figcaption></figure>
+    <figure data-zoom data-group="porton" tabindex="0" data-cap="Accionando el pulsador verde de la caja de mando durante la prueba."><img src="porton-pulsador.jpg" alt="Una mano presiona el pulsador verde de la caja de mando" loading="lazy"><figcaption>Probando el pulsador verde.</figcaption></figure>
+  </div>
+
+  <h3 class="subtitle">Detrás del programa</h3>
+  <div class="panel" data-tabs>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true">Grafcet</button>
+      <button class="tab" role="tab" aria-selected="false">Escalera</button>
+      <button class="tab" role="tab" aria-selected="false">Conexiones</button>
+      <button class="tab" role="tab" aria-selected="false">Pines</button>
+    </div>
+    <div class="tabpanel on" role="tabpanel"><img src="porton-grafcet.png" alt="Grafcet del portón con siete etapas" data-zoom data-group="porton-d" data-cap="Grafcet del docente redibujado: ciclo normal (E0 a E4) y ruta de emergencia (E5 y E6)." loading="lazy"><p>Siete etapas: ciclo normal de E0 a E4 y ruta de emergencia en E5 y E6. Solo una etapa está activa a la vez.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="porton-ladder1.png" alt="Escalones de E1 y E2 en OpenPLC Editor" data-zoom data-group="porton-d" data-cap="Escalones de E1 y E2 en OpenPLC Editor, en simulación." loading="lazy"><p>Cada etapa es una variable con su escalón: se activa, se mantiene con un contacto de retención y se apaga cuando entra la siguiente.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="porton-esquema.png" alt="Esquema de conexión del portón con la placa OpenPLC" data-zoom data-group="porton-d" data-cap="Esquema de conexión del portón con la placa OpenPLC MicroPLC Nano V1.2." loading="lazy"><p>Dos relés forman el puente H del motor, otros dos manejan las luces verde y roja. La amarilla sale directo del pin D9 con un LED y una resistencia de 220 Ω.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="porton-pines.png" alt="Configuración de la placa Arduino Nano y mapeo de pines" data-zoom data-group="porton-d" data-cap="Configuración de la placa (Arduino Nano) y mapeo de pines en OpenPLC Editor." loading="lazy"><p>Cinco entradas en los pines 2 a 6 y cinco salidas en los pines 7, 8, 12, 13 y 9.</p></div>
+  </div>
+  <div class="links">
+    <a class="btn btn-dark" href="https://drive.google.com/file/d/1aYp_dR16X-eEaFJS_-s3R8GhcqDDpdTf/view?usp=sharing" target="_blank" rel="noopener">Ver el video del laboratorio</a>
+  </div>
+ </div>
+</section>
+
+<!-- ===================== GUILLOTINA ===================== -->
+<section id="guillotina" class="band coral" aria-labelledby="t-guillotina">
+ <div class="wrap">
+  <div class="band-top">
+    <div class="rv">
+      <span class="kicker">Laboratorio 2</span>
+      <h2 id="t-guillotina">Guillotina industrial</h2>
+      <p class="desc">Una guillotina a escala que corta plástico a medida. Una cinta lleva el material hasta la zona de corte, la hoja baja 3 segundos y una segunda cinta cuenta las piezas que salen.</p>
+      <p class="desc">Al llegar a un lote de 10 piezas todo se detiene y un piloto parpadea. El pulsador de parada la frena en cualquier momento. Es el ejercicio 9 del Capítulo III, Contadores.</p>
+    </div>
+    <div class="hero-photo rv">
+      <img src="guillotina-sensor.jpg" alt="Prueba del sensor acercando una pieza metálica a la cinta" data-zoom data-group="guillotina" data-cap="Prueba del sensor: se acerca una pieza metálica a la cinta para simular la llegada del material a la zona de corte.">
+      <div class="badge-float">Lote de 10<small>Contador CTU</small></div>
+    </div>
+  </div>
+
+  <h3 class="subtitle">Cómo funciona</h3>
+  <div class="steps">
+    <div class="step rv"><h4>Marcha</h4><p>El pulsador verde arranca las dos cintas y deja el sistema enclavado.</p></div>
+    <div class="step rv"><h4>Llega al corte</h4><p>El final de carrera detecta el material y la cinta de entrada se detiene.</p></div>
+    <div class="step rv"><h4>Corta</h4><p>La hoja baja durante 3 s, controlados por un temporizador TON.</p></div>
+    <div class="step rv"><h4>Cuenta</h4><p>El sensor de salida cuenta cada pieza. A las 10 se detiene y el piloto parpadea cada 0,5 s.</p></div>
+  </div>
+
+  <h3 class="subtitle">Simulador de la guillotina</h3>
+  <div class="sim" id="simGuillotina">
+    <div class="sim-head"><h3>Línea de corte y conteo</h3><span class="live">Programa corriendo</span></div>
+    <p class="sim-sub">Pon material en la cinta, arranca con Marcha y mira cómo la lógica corta, cuenta y se detiene en 10.</p>
+    <div class="sim-grid">
+      <div>
+        <div class="scene">
+          <svg viewBox="0 0 760 300" role="img" aria-label="Guillotina con dos cintas transportadoras">
+            <rect x="0" y="262" width="760" height="38" fill="#C9D3EC"/>
+            <!-- belts -->
+            <rect x="16" y="238" width="368" height="22" rx="11" fill="#2A2670"/>
+            <rect x="396" y="238" width="350" height="22" rx="11" fill="#2A2670"/>
+            <g id="gtBeltDots" fill="#6F62FF"></g>
+            <!-- sensors -->
+            <rect x="322" y="258" width="40" height="8" fill="#FFC736"/>
+            <text x="342" y="288" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">FC</text>
+            <rect x="596" y="208" width="6" height="56" fill="#FFC736"/>
+            <text x="599" y="288" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">SC</text>
+            <!-- box -->
+            <rect x="690" y="196" width="62" height="66" rx="8" fill="#FF7A2F" opacity=".92"/>
+            <text x="721" y="192" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="12" fill="#4A4A72">Embalaje</text>
+            <!-- frame -->
+            <rect x="286" y="60" width="14" height="180" rx="4" fill="#6B76A0"/>
+            <rect x="386" y="60" width="14" height="180" rx="4" fill="#6B76A0"/>
+            <rect x="280" y="52" width="126" height="16" rx="6" fill="#17163B"/>
+            <g id="gtBlade">
+              <rect x="304" y="0" width="80" height="22" rx="4" fill="#E5E8F2" stroke="#17163B" stroke-width="3"/>
+              <polygon points="304,22 384,22 344,36" fill="#FF5B6E" stroke="#17163B" stroke-width="3" stroke-linejoin="round"/>
+            </g>
+            <!-- pilot -->
+            <circle id="gtPil" cx="30" cy="40" r="16" fill="#4D4420" stroke="#17163B" stroke-width="3"/>
+            <text x="54" y="45" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">Piloto</text>
+            <g id="gtItems"></g>
+            <text x="342" y="40" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">Zona de corte</text>
+          </svg>
+        </div>
+        <div class="msg" id="gtMsg" role="status" aria-live="polite"></div>
+        <div class="controls">
+          <button class="push g" id="gtPM"><i></i>PM: Marcha</button>
+          <button class="push r" id="gtPP"><i></i>PP: Parada</button>
+          <button class="push o" id="gtAdd"><i></i>Poner material</button>
+          <button class="push s" id="gtAuto" aria-pressed="false"><i></i>Material automático</button>
+          <span class="seg" role="group" aria-label="Velocidad de la simulación">
+            <button data-speed="1" aria-pressed="true">x1</button><button data-speed="2" aria-pressed="false">x2</button><button data-speed="4" aria-pressed="false">x4</button>
+          </span>
+        </div>
+        <p class="help">Activa el material automático, presiona Marcha y espera a las 10 piezas. Marcha otra vez reinicia el conteo. Parada detiene todo, incluso con la hoja abajo.</p>
+      </div>
+      <div class="side">
+        <div class="box"><h4>Contador de piezas</h4>
+          <div class="readout"><div><b id="gtCount">0</b><span>de 10 piezas</span></div><div><b id="gtTimer">0.0</b><span>s de corte (3 s)</span></div></div>
+          <div class="bar"><i id="gtBar"></i></div></div>
+        <div class="box"><h4>Entradas del PLC</h4><div class="leds" id="gtIn"></div></div>
+        <div class="box"><h4>Salidas y memorias</h4><div class="leds" id="gtOut"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subtitle">La maqueta real</h3>
+  <div class="gallery">
+    <figure data-zoom data-group="guillotina" tabindex="0" data-cap="Cinta transportadora con el sensor inductivo y la placa de control (Arduino Nano + relés)."><img src="guillotina-cinta.jpg" alt="Cinta naranja con sensor inductivo y placa de control" loading="lazy"><figcaption>Cinta, sensor inductivo y placa de control.</figcaption></figure>
+    <figure data-zoom data-group="guillotina" tabindex="0" data-cap="Caja de mando con el pulsador verde (marcha) y el pulsador rojo (parada), conectada a la placa."><img src="guillotina-caja.jpg" alt="Caja de mando de madera con pulsador verde y rojo" loading="lazy"><figcaption>Caja de mando con marcha y parada.</figcaption></figure>
+    <figure data-zoom data-group="guillotina" tabindex="0" data-cap="Prueba del sensor: se acerca una pieza metálica a la cinta para simular la llegada del material a la zona de corte."><img src="guillotina-sensor.jpg" alt="Prueba del sensor con una pieza metálica" loading="lazy"><figcaption>Prueba del sensor con una pieza metálica.</figcaption></figure>
+    <figure data-zoom data-group="guillotina" tabindex="0" data-cap="Detalle de la placa de control: Arduino Nano y módulo de 4 relés con las salidas activas."><img src="guillotina-placa.jpg" alt="Placa con Arduino Nano y cuatro relés" loading="lazy"><figcaption>La placa: Arduino Nano y 4 relés.</figcaption></figure>
+  </div>
+
+  <h3 class="subtitle">Detrás del programa</h3>
+  <div class="panel" data-tabs>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true">Variables</button>
+      <button class="tab" role="tab" aria-selected="false">Escalones 1 a 3</button>
+      <button class="tab" role="tab" aria-selected="false">Escalones 4 y 5</button>
+      <button class="tab" role="tab" aria-selected="false">Escalones 6 y 7</button>
+      <button class="tab" role="tab" aria-selected="false">Pines</button>
+    </div>
+    <div class="tabpanel on" role="tabpanel"><img src="guillotina-variables.png" alt="Tabla de variables del programa" data-zoom data-group="guillotina-d" data-cap="Tabla de variables del programa en OpenPLC Editor." loading="lazy"><p>Entradas, salidas, memorias, temporizadores y el contador, tal como se declararon en OpenPLC Editor.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="guillotina-rungs1.png" alt="Escalones de marcha, cinta de salida y cinta de entrada" data-zoom data-group="guillotina-d" data-cap="Escalones 1 a 3: marcha y parada con enclavamiento, cinta de salida (CTA2) y cinta de entrada (CTA1)." loading="lazy"><p>M1 es la memoria de «sistema en marcha»: se enclava con PM y se apaga con PP o al completar el lote.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="guillotina-rungs2.png" alt="Temporizador de 3 segundos y contador de 10 piezas" data-zoom data-group="guillotina-d" data-cap="Escalones 4 y 5: temporizador de 3 segundos de la guillotina y contador de 10 piezas (CTU)." loading="lazy"><p>El TON de 3 s sube la hoja sin necesitar otro sensor. El CTU cuenta en la cinta de salida y se reinicia con PM.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="guillotina-rungs3.png" alt="Oscilador de dos temporizadores y piloto" data-zoom data-group="guillotina-d" data-cap="Escalones 6 y 7: oscilador de 500 ms / 500 ms y piloto intermitente (PIL)." loading="lazy"><p>Dos temporizadores cruzados generan el reloj del parpadeo dentro del propio programa.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="guillotina-pines.png" alt="Configuración de la placa y mapeo de pines" data-zoom data-group="guillotina-d" data-cap="Configuración de la placa (Arduino Nano) y mapeo de pines en OpenPLC Editor." loading="lazy"><p>Cuatro entradas en los pines 2 a 5 y cuatro salidas en los pines 7, 8, 12 y 13.</p></div>
+  </div>
+  <div class="links">
+    <a class="btn btn-dark" href="https://drive.google.com/file/d/13TgcIGxE5eMZ-kC3IKfERicHykQrlUh5/view?usp=sharing" target="_blank" rel="noopener">Ver el video del laboratorio</a>
+  </div>
+ </div>
+</section>
+
+<!-- ===================== CINTA ===================== -->
+<section id="cinta" class="band mint" aria-labelledby="t-cinta">
+ <div class="wrap">
+  <div class="band-top">
+    <div class="rv">
+      <span class="kicker">Proyecto del semestre</span>
+      <h2 id="t-cinta">Cinta clasificadora con compactadora</h2>
+      <p class="desc">Un prototipo físico de dos bandas que separa residuos metálicos de plásticos y aplasta los metálicos. Un sensor inductivo detecta el metal, un servomotor con piñón y cremallera lo empuja a la segunda banda y un motor paso a paso con tornillo de avance lo compacta 4 cm.</p>
+      <p class="desc">La lógica se validó primero en C++ con un Arduino Uno. La versión final reparte el trabajo: el PLC dirige la secuencia y el Arduino mueve el servo y el paso a paso.</p>
+    </div>
+    <div class="hero-photo rv">
+      <img style="object-position:50% 68%" src="cinta-general.jpg" alt="Vista general de la cinta clasificadora con la compactadora" data-zoom data-group="cinta" data-cap="Vista general: banda 1, sensor inductivo, banda 2, caja de control y compactadora.">
+      <div class="badge-float">≈ 18 piezas por minuto<small>límite de la compactadora</small></div>
+    </div>
+  </div>
+
+  <h3 class="subtitle">Cómo funciona</h3>
+  <div class="steps">
+    <div class="step rv"><h4>Entra una pieza</h4><p>La banda 1 la lleva. Si es plástico, no activa el sensor y sigue hasta el contenedor.</p></div>
+    <div class="step rv"><h4>Detecta metal</h4><p>El sensor inductivo la ve. A los 0,7 s la banda 1 se detiene frente al desvío.</p></div>
+    <div class="step rv"><h4>La desvía</h4><p>El servo gira de 0° a 180° y la cremallera la empuja a la banda 2.</p></div>
+    <div class="step rv"><h4>La compacta</h4><p>El sensor infrarrojo avisa: el motor avanza 4 cm, pausa 0,3 s y retrocede.</p></div>
+  </div>
+  <p class="note rv">Estado: la versión en C++ con Arduino Uno está probada con el prototipo. La integración con el PLC está diseñada en Grafcet y escalera, y falta montarla.</p>
+
+  <h3 class="subtitle">Simulador de la cinta</h3>
+  <div class="sim" id="simCinta">
+    <div class="sim-head"><h3>Clasificar y compactar</h3><span class="live">Programa corriendo</span></div>
+    <p class="sim-sub">Suelta piezas sobre la banda 1 y observa las dos máquinas de estados: la del metal y la de la compactadora corren a la vez, sin esperarse.</p>
+    <div class="sim-grid">
+      <div>
+        <div class="scene">
+          <svg viewBox="0 0 760 400" role="img" aria-label="Cinta con desvío de metal y compactadora">
+            <rect x="0" y="372" width="760" height="28" fill="#C9D3EC"/>
+            <!-- caja compactados -->
+            <rect x="226" y="6" width="84" height="40" rx="10" fill="#12C9A0"/>
+            <text x="268" y="31" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#17163B">Compactado</text>
+            <!-- B2 -->
+            <rect x="256" y="50" width="36" height="266" fill="#2A2670"/>
+            <g id="ctDotsV" fill="#6F62FF"></g>
+            <!-- B1 -->
+            <rect x="16" y="312" width="640" height="36" rx="10" fill="#2A2670"/>
+            <g id="ctDotsH" fill="#6F62FF"></g>
+            <!-- plastic bin -->
+            <rect x="662" y="286" width="86" height="86" rx="12" fill="#FF7A2F" opacity=".95"/>
+            <text x="705" y="333" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#17163B">Plástico</text>
+            <!-- inductive -->
+            <rect x="172" y="262" width="36" height="32" rx="8" fill="#FFC736"/>
+            <rect x="184" y="292" width="12" height="16" fill="#FFC736"/>
+            <circle id="ctIndLed" cx="190" cy="278" r="6" fill="#17163B"/>
+            <text x="190" y="254" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">Inductivo</text>
+            <!-- backplate + IR -->
+            <rect x="292" y="68" width="10" height="64" rx="3" fill="#6B76A0"/>
+            <rect x="312" y="108" width="34" height="18" rx="6" fill="#FFC736"/>
+            <circle id="ctIrLed" cx="322" cy="117" r="5" fill="#17163B"/>
+            <text x="352" y="121" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">Infrarrojo</text>
+            <!-- compactor -->
+            <rect x="112" y="93" width="70" height="22" rx="6" fill="#6B76A0"/>
+            <rect id="ctPlate" x="180" y="82" width="22" height="44" rx="6" fill="#FF5B6E" stroke="#17163B" stroke-width="3"/>
+            <text x="112" y="82" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">Compactadora</text>
+            <!-- rack/servo -->
+            <rect id="ctRack" x="268" y="360" width="12" height="40" rx="3" fill="#12C9A0" stroke="#17163B" stroke-width="2"/>
+            <rect x="240" y="378" width="68" height="22" rx="8" fill="#17163B"/>
+            <text x="274" y="394" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="11" fill="#fff" id="ctServoTxt">Servo 0°</text>
+            <g id="ctPieces"></g>
+          </svg>
+        </div>
+        <div class="msg" id="ctMsg" role="status" aria-live="polite"></div>
+        <div class="controls">
+          <button class="push s" id="ctMetal"><i></i>Soltar metal</button>
+          <button class="push o" id="ctPlast"><i></i>Soltar plástico</button>
+          <button class="push b" id="ctAuto" aria-pressed="false"><i></i>Mezcla automática</button>
+          <button class="push r" id="ctReset"><i></i>Reiniciar</button>
+          <span class="seg" role="group" aria-label="Velocidad de la simulación">
+            <button data-speed="1" aria-pressed="true">x1</button><button data-speed="2" aria-pressed="false">x2</button><button data-speed="4" aria-pressed="false">x4</button>
+          </span>
+        </div>
+        <p class="help">Metal: cuadrado plateado. Plástico: círculo naranja. Si sueltas dos piezas muy juntas verás por qué deben ir separadas: la banda 1 se detiene 1,2 s y arrastra a todas.</p>
+      </div>
+      <div class="side">
+        <div class="box"><h4>Máquina del metal</h4><div class="chips" id="ctChipsM"></div>
+          <h4 style="margin-top:14px">Máquina de la compactadora</h4><div class="chips" id="ctChipsP"></div></div>
+        <div class="box"><h4>Resultados</h4>
+          <div class="readout"><div><b id="ctMetalN">0</b><span>metal desviado</span></div><div><b id="ctPlastN">0</b><span>plástico al contenedor</span></div><div><b id="ctCompN">0</b><span>compactadas</span></div></div></div>
+        <div class="box"><h4>Sensores y actuadores</h4><div class="leds" id="ctLeds"></div>
+          <p class="help" style="margin-top:10px">Pasos del motor: <b id="ctSteps">0</b> de 1000 (4 cm)</p><div class="bar"><i id="ctBar"></i></div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subtitle">El prototipo real</h3>
+  <div class="gallery portrait">
+    <figure data-zoom data-group="cinta" tabindex="0" data-cap="Vista general: banda 1, sensor inductivo, banda 2, caja de control y compactadora."><img src="cinta-general.jpg" alt="Vista general de las bandas, la caja de control y la compactadora" loading="lazy"><figcaption>Vista general del prototipo.</figcaption></figure>
+    <figure data-zoom data-group="cinta" tabindex="0" data-cap="Detalle del mecanismo de desvío, el sensor inductivo, el Arduino con shield, el driver A4988 y la compactadora."><img src="cinta-desvio.jpg" alt="Mecanismo de desvío con servo, Arduino con shield y compactadora" loading="lazy"><figcaption>Desvío, Arduino con shield y compactadora.</figcaption></figure>
+    <figure data-zoom data-group="cinta" tabindex="0" data-cap="Montaje en pruebas: caja de control, banda 2, motor paso a paso y compactadora."><img src="cinta-pruebas.jpg" alt="Montaje en pruebas con caja de control, banda 2 y motor paso a paso" loading="lazy"><figcaption>Montaje en pruebas.</figcaption></figure>
+  </div>
+
+  <h3 class="subtitle">Detrás del programa</h3>
+  <div class="panel" data-tabs>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true">Flujo</button>
+      <button class="tab" role="tab" aria-selected="false">Arquitectura</button>
+      <button class="tab" role="tab" aria-selected="false">Máquinas de estados</button>
+      <button class="tab" role="tab" aria-selected="false">Grafcet</button>
+      <button class="tab" role="tab" aria-selected="false">PLC y Arduino</button>
+    </div>
+    <div class="tabpanel on" role="tabpanel"><img src="cinta-flujo.png" alt="Diagrama de flujo del funcionamiento" data-zoom data-group="cinta-d" data-cap="Diagrama de flujo del funcionamiento del sistema." loading="lazy"><p>Las piezas plásticas nunca activan el sensor inductivo y siguen hasta el contenedor. Las metálicas se desvían y llegan a la compactadora.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="cinta-arquitectura.png" alt="Arquitectura de control con Arduino Uno" data-zoom data-group="cinta-d" data-cap="Arquitectura de control del sistema." loading="lazy"><p>Un Arduino Uno lee los dos sensores y comanda las bandas, el servo y el driver A4988, cada grupo con sus propios pines.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="cinta-estados.png" alt="Máquinas de estados del metal y de la compactación" data-zoom data-group="cinta-d" data-cap="Máquinas de estados del ciclo del metal y del ciclo de compactación." loading="lazy"><p>Cada máquina avanza un estado por pasada de loop(), sin delay largos, así ninguna espera a la otra.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="cinta-grafcet.png" alt="Dos Grafcets paralelos" data-zoom data-group="cinta-d" data-cap="Grafcet del desvío del metal y de la compactación." loading="lazy"><p>Dos Grafcets paralelos, cada uno con una sola etapa activa, igual que las dos máquinas de estados del código.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="cinta-plc.png" alt="Esquema del PLC y el Arduino Uno" data-zoom data-group="cinta-d" data-cap="Esquema de la implementación con el PLC y el Arduino Uno." loading="lazy"><p>El PLC manda dos órdenes por contactos de relé y el Arduino responde «listo» cuando termina cada movimiento.</p></div>
+  </div>
+ </div>
+</section>
+
+<!-- ===================== EQUIPO ===================== -->
+<section id="equipo" class="team wrap" aria-labelledby="t-equipo">
+  <div class="section-head rv">
+    <h2 id="t-equipo">El equipo</h2>
+    <p>Cinco estudiantes de Ingeniería de Sistemas trabajaron en los dos laboratorios y en el proyecto.</p>
+  </div>
+  <div class="team-grid">
+    <div class="member rv"><div class="avatar" style="background:var(--sun)">M</div><h3>Marcos Alexander Panozo Patty</h3></div>
+    <div class="member rv"><div class="avatar" style="background:var(--coral)">A</div><h3>Ario Mauricio Chacon Orosco</h3></div>
+    <div class="member rv"><div class="avatar" style="background:var(--mint)">M</div><h3>Marcos Javier Vargas Callizaya</h3></div>
+    <div class="member rv"><div class="avatar" style="background:#B9B2FF">C</div><h3>Cris Kleber Ballon Chipana</h3></div>
+    <div class="member rv"><div class="avatar" style="background:var(--orange)">A</div><h3>Adrian Edwin Aguirre Rojas</h3></div>
+  </div>
+  <div class="teach rv">
+    <img src="logo-unifranz.png" alt="Logo de la Universidad Privada Franz Tamayo">
+    <div><b>Universidad Privada Franz Tamayo</b><p>Facultad de Ingeniería, Ingeniería de Sistemas. Programación de Sistemas Embebidos, docente Ing. Omar Poma Laura. La Paz, Bolivia, 2026.</p></div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap cols">
+    <div><h4>Máquinas con PLC</h4><p>Dos laboratorios y el proyecto del semestre de Programación de Sistemas Embebidos. Los simuladores reproducen la lógica de los programas del informe; no controlan hardware real.</p></div>
+    <div><h4>Otras páginas del equipo</h4>
+      <ul>
+        <li><a href="https://alexpanozo27.github.io/viaje-del-dato/" target="_blank" rel="noopener">El viaje del dato</a></li>
+        <li><a href="https://alexpanozo27.github.io/arquitectura-mqtt/#simulador" target="_blank" rel="noopener">Arquitectura MQTT</a></li>
+        <li><a href="https://alexpanozo27.github.io/configuracion-mqtt/" target="_blank" rel="noopener">Configuración MQTT</a></li>
+        <li><a href="https://alexpanozo27.github.io/ubidots-iot/" target="_blank" rel="noopener">Ubidots IoT</a></li>
+        <li><a href="https://alexpanozo27.github.io/conexion-ubidots/" target="_blank" rel="noopener">Conexión con Ubidots</a></li>
+      </ul></div>
+  </div>
+  <div class="wrap"><p class="fine">UNIFRANZ, La Paz, Bolivia, 2026.</p></div>
+</footer>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+  <button class="x" aria-label="Cerrar">×</button><button class="pv" aria-label="Anterior">‹</button><button class="nx" aria-label="Siguiente">›</button>
+  <img alt=""><p></p>
+</div>
+
+<script src="main.js"></script>
+<script src="sim-porton.js"></script>
+<script src="sim-guillotina.js"></script>
+<script src="sim-cinta.js"></script>
+</body>
+</html>
