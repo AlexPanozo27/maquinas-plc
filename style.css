@@ -254,3 +254,10 @@ footer .fine{margin-top:28px;opacity:.65;font-size:.9rem;max-width:none}
 @keyframes pulseGo{0%,100%{box-shadow:0 0 0 0 rgba(23,22,59,.35)}50%{box-shadow:0 0 0 10px rgba(23,22,59,0)}}
 @media (max-width:900px){.launch-grid{grid-template-columns:1fr}}
 @media (prefers-reduced-motion:reduce){.launch .lgo{animation:none}}
+
+/* ---- más aire entre la sección de simulaciones y lo de alrededor ---- */
+.sim-launch{padding-top:84px;padding-bottom:44px}
+.sim-launch .section-head{margin-bottom:38px}
+.launch-grid{gap:28px}
+.launch{padding:30px 30px 28px;gap:14px;min-height:190px}
+.launch strong{font-size:1.85rem}
