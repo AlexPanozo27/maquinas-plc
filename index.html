@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Máquinas con PLC | Sistemas Embebidos UNIFRANZ</title>
-<meta name="description" content="Portón automático, guillotina industrial y cinta clasificadora con compactadora: dos laboratorios y el proyecto del semestre de Programación de Sistemas Embebidos, con simuladores interactivos.">
+<meta name="description" content="Guillotina industrial, portón automático y cinta clasificadora con compactadora: dos laboratorios y el proyecto del semestre de Programación de Sistemas Embebidos, con simuladores interactivos.">
 <link rel="icon" href="logo-unifranz.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,11 +17,11 @@
   <nav class="nav-in" aria-label="Principal">
     <a class="brand" href="#inicio"><img src="logo-unifranz.png" alt="Logo de la Universidad Privada Franz Tamayo"><span>Sistemas Embebidos</span></a>
     <a class="lnk keep" href="#proyectos">Proyectos</a>
-    <a class="lnk" href="#porton">Portón</a>
     <a class="lnk" href="#guillotina">Guillotina</a>
+    <a class="lnk" href="#porton">Portón</a>
     <a class="lnk" href="#cinta">Cinta</a>
     <a class="lnk keep" href="#equipo">Equipo</a>
-    <a class="btn btn-main btn-sm cta" href="#porton">Probar simuladores</a>
+    <a class="btn btn-main btn-sm cta" href="#simulaciones">Probar simuladores</a>
   </nav>
 </header>
 
@@ -30,10 +30,10 @@
   <div class="wrap hero-grid">
     <div>
       <h1>Tres máquinas que piensan con un PLC</h1>
-      <p class="lead">Un portón, una guillotina y una cinta que separa metal de plástico y aplasta las latas. Las armamos, las programamos en Grafcet y escalera, y aquí puedes manejarlas tú.</p>
+      <p class="lead">Una guillotina, un portón y una cinta que separa metal de plástico y aplasta las latas. Las armamos, las programamos en Grafcet y escalera, y aquí puedes manejarlas tú.</p>
       <div class="actions">
         <a class="btn btn-main" href="#proyectos">Ver los proyectos</a>
-        <a class="btn btn-ghost" href="#cinta">Probar la cinta</a>
+        <a class="btn btn-ghost" href="#simulaciones">Probar simuladores</a>
       </div>
       <div class="course"><img src="logo-unifranz.png" alt=""> Programación de Sistemas Embebidos, UNIFRANZ</div>
     </div>
@@ -81,13 +81,13 @@
     <p>Cada uno tiene su resumen, fotos del montaje real, los programas y un simulador para probar la lógica sin tocar el hardware.</p>
   </div>
   <div class="cards">
-    <a class="pcard sun rv" href="#porton">
-      <div class="ph"><img src="porton-frente.jpg" alt="Maqueta del portón con lámina de reja y motorreductor" loading="lazy"></div>
-      <div class="tx"><span class="tag">Laboratorio 1</span><h3>Portón automático</h3><p>Abre, se cierra solo a los 30 s y se detiene con una emergencia que solo se libera con Reset.</p><span class="go">Ver y probar <b>→</b></span></div>
-    </a>
     <a class="pcard coral rv" href="#guillotina">
       <div class="ph"><img src="guillotina-cinta.jpg" alt="Cinta de la guillotina con sensor inductivo y placa de control" loading="lazy"></div>
-      <div class="tx"><span class="tag">Laboratorio 2</span><h3>Guillotina industrial</h3><p>Corta durante 3 s, cuenta 10 piezas y avisa con un piloto que parpadea.</p><span class="go">Ver y probar <b>→</b></span></div>
+      <div class="tx"><span class="tag">Laboratorio 1</span><h3>Guillotina industrial</h3><p>Corta durante 3 s, cuenta 10 piezas y avisa con un piloto que parpadea.</p><span class="go">Ver y probar <b>→</b></span></div>
+    </a>
+        <a class="pcard sun rv" href="#porton">
+      <div class="ph"><img src="porton-frente.jpg" alt="Maqueta del portón con lámina de reja y motorreductor" loading="lazy"></div>
+      <div class="tx"><span class="tag">Laboratorio 2</span><h3>Portón automático</h3><p>Abre, se cierra solo a los 30 s y se detiene con una emergencia que solo se libera con Reset.</p><span class="go">Ver y probar <b>→</b></span></div>
     </a>
     <a class="pcard mint rv" href="#cinta">
       <div class="ph"><img src="cinta-desvio.jpg" alt="Mecanismo de desvío, Arduino con shield y compactadora" loading="lazy"></div>
@@ -96,109 +96,17 @@
   </div>
 </section>
 
-<!-- ===================== PORTÓN ===================== -->
-<section id="porton" class="band sun" aria-labelledby="t-porton">
- <div class="wrap">
-  <div class="band-top">
-    <div class="rv">
-      <span class="kicker">Laboratorio 1</span>
-      <h2 id="t-porton">Portón automático</h2>
-      <p class="desc">Un portón corredizo a escala sobre un riel de aluminio, movido por un motorreductor con piñón y cremallera. Lo gobierna una placa OpenPLC MicroPLC Nano V1.2, programada en escalera a partir del Grafcet que resolvió el docente en clase.</p>
-      <p class="desc">Se abre con un pulsador, se cierra solo a los 30 segundos y avisa su estado con tres luces. Una emergencia lo detiene; para seguir hay que presionar Reset, que lo cierra y lo devuelve al inicio.</p>
-    </div>
-    <div class="hero-photo rv">
-      <img src="porton-energizado.jpg" alt="Maqueta del portón energizada con caja de mando de tres pulsadores" data-zoom data-group="porton" data-cap="Maqueta energizada: PLC con sus LEDs encendidos, caja de mando con tres pulsadores y portón sobre su riel.">
-      <div class="badge-float">7 etapas<small>Grafcet pasado a escalera</small></div>
-    </div>
-  </div>
 
-  <h3 class="subtitle">Cómo funciona</h3>
-  <div class="steps">
-    <div class="step rv"><h4>Cerrado</h4><p>Luz roja. Espera que alguien presione el pulsador verde.</p></div>
-    <div class="step rv"><h4>Abriendo</h4><p>Luz amarilla mientras el motor mueve el portón hasta el final de carrera de abierto.</p></div>
-    <div class="step rv"><h4>Abierto</h4><p>Luz verde y arranca un temporizador de 30 s.</p></div>
-    <div class="step rv"><h4>Cerrando</h4><p>Cierra por pulsador o a los 30 s, otra vez con luz amarilla, y vuelve a rojo.</p></div>
+<section id="simulaciones" class="wrap sim-launch">
+  <div class="section-head rv">
+    <h2>Elige una simulación</h2>
+    <p>Cada botón te lleva directo al simulador de esa máquina. Ahí puedes presionar los pulsadores y ver cómo responde el programa.</p>
   </div>
-  <p class="note rv">Con el paro de emergencia todo se apaga y el portón no se mueve hasta que se presiona Reset.</p>
-
-  <h3 class="subtitle">Simulador del portón</h3>
-  <div class="sim" id="simPorton">
-    <div class="sim-head"><h3>Caja de mando virtual</h3><span class="live">Programa corriendo</span></div>
-    <p class="sim-sub">Presiona los tres pulsadores como en la maqueta. La lógica es la misma escalera del informe, escalón por escalón.</p>
-    <div class="sim-grid">
-      <div>
-        <div class="scene">
-          <svg viewBox="0 0 720 300" role="img" aria-label="Portón corredizo que se abre y se cierra">
-            <defs>
-              <pattern id="bars" width="20" height="10" patternUnits="userSpaceOnUse"><rect width="20" height="10" fill="#E9EEF8"/><rect x="8" width="4" height="10" fill="#8C97B5"/></pattern>
-            </defs>
-            <rect x="0" y="252" width="720" height="48" fill="#C9D3EC"/>
-            <rect x="388" y="120" width="300" height="132" rx="8" fill="#D9E0F3"/>
-            <text x="538" y="190" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="14" fill="#8C97B5">muro</text>
-            <rect x="100" y="250" width="590" height="8" rx="4" fill="#A9B3CE"/>
-            <rect x="52" y="60" width="50" height="192" rx="8" fill="#6B76A0"/>
-            <rect x="388" y="196" width="60" height="54" rx="10" fill="#FFC736" stroke="#17163B" stroke-width="3"/>
-            <g id="pgGate">
-              <rect x="0" y="96" width="280" height="154" rx="6" fill="url(#bars)" stroke="#17163B" stroke-width="3"/>
-              <rect x="0" y="96" width="280" height="10" fill="#17163B" opacity=".75"/>
-              <rect x="0" y="150" width="280" height="8" fill="#17163B" opacity=".25"/>
-            </g>
-            <rect id="pgFCC" x="104" y="236" width="8" height="14" rx="2" fill="#C7CCDD"/>
-            <rect id="pgFCA" x="372" y="236" width="8" height="14" rx="2" fill="#C7CCDD"/>
-            <rect x="60" y="24" width="34" height="96" rx="12" fill="#17163B"/>
-            <circle id="pgLR" cx="77" cy="41" r="10" fill="#4A2A2F"/>
-            <circle id="pgLY" cx="77" cy="72" r="10" fill="#4D4420"/>
-            <circle id="pgLG" cx="77" cy="103" r="10" fill="#1F4A33"/>
-            <text x="116" y="286" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">FCC</text>
-            <text x="354" y="286" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">FCA</text>
-            <text id="pgPos" x="640" y="286" text-anchor="end" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72"></text>
-          </svg>
-        </div>
-        <div class="msg" id="pgMsg" role="status" aria-live="polite"></div>
-        <div class="controls">
-          <button class="push g" id="pgP"><i></i>P: Pulsador</button>
-          <button class="push r" id="pgE"><i></i>Emergencia</button>
-          <button class="push y" id="pgR"><i></i>Reset</button>
-          <span class="seg" role="group" aria-label="Velocidad de la simulación">
-            <button data-speed="1" aria-pressed="true">x1</button><button data-speed="5" aria-pressed="false">x5</button><button data-speed="10" aria-pressed="false">x10</button>
-          </span>
-        </div>
-        <p class="help">Prueba esto: abre, deja pasar los 30 s (usa x10 para acelerar), presiona Emergencia en pleno movimiento y recupera con Reset.</p>
-      </div>
-      <div class="side">
-        <div class="box"><h4>Etapa activa del Grafcet</h4><div class="chips" id="pgChips"></div>
-          <p class="help" style="margin-top:10px">Temporizador TIM1 (30 s)</p><div class="bar"><i id="pgTim"></i></div></div>
-        <div class="box"><h4>Entradas del PLC</h4><div class="leds" id="pgIn"></div></div>
-        <div class="box"><h4>Salidas del PLC</h4><div class="leds" id="pgOut"></div></div>
-      </div>
-    </div>
+  <div class="launch-grid">
+    <a class="launch coral rv" href="#simGuillotina"><span class="lk">Laboratorio 1</span><strong>Simular la guillotina</strong><span class="lgo">▶ Abrir simulación</span></a>
+    <a class="launch sun rv" href="#simPorton"><span class="lk">Laboratorio 2</span><strong>Simular el portón</strong><span class="lgo">▶ Abrir simulación</span></a>
+    <a class="launch mint rv" href="#simCinta"><span class="lk">Proyecto del semestre</span><strong>Simular la cinta</strong><span class="lgo">▶ Abrir simulación</span></a>
   </div>
-
-  <h3 class="subtitle">La maqueta real</h3>
-  <div class="gallery">
-    <figure data-zoom data-group="porton" tabindex="0" data-cap="Maqueta del portón vista de frente: lámina con reja, riel de aluminio y motorreductor con cremallera."><img src="porton-frente.jpg" alt="Portón visto de frente con su reja y el motorreductor" loading="lazy"><figcaption>Portón de frente: reja, riel y motorreductor.</figcaption></figure>
-    <figure data-zoom data-group="porton" tabindex="0" data-cap="Maqueta vista por detrás: carcasa del motorreductor y cremallera sobre el portón."><img src="porton-atras.jpg" alt="Portón visto por detrás con la cremallera" loading="lazy"><figcaption>Por detrás: la cremallera sobre el portón.</figcaption></figure>
-    <figure data-zoom data-group="porton" tabindex="0" data-cap="Maqueta energizada: PLC con sus LEDs encendidos, caja de mando con tres pulsadores y portón sobre su riel."><img src="porton-energizado.jpg" alt="Maqueta energizada con LEDs de la placa encendidos" loading="lazy"><figcaption>Energizada, con los LEDs de la placa.</figcaption></figure>
-    <figure data-zoom data-group="porton" tabindex="0" data-cap="Accionando el pulsador verde de la caja de mando durante la prueba."><img src="porton-pulsador.jpg" alt="Una mano presiona el pulsador verde de la caja de mando" loading="lazy"><figcaption>Probando el pulsador verde.</figcaption></figure>
-  </div>
-
-  <h3 class="subtitle">Detrás del programa</h3>
-  <div class="panel" data-tabs>
-    <div class="tabs" role="tablist">
-      <button class="tab" role="tab" aria-selected="true">Grafcet</button>
-      <button class="tab" role="tab" aria-selected="false">Escalera</button>
-      <button class="tab" role="tab" aria-selected="false">Conexiones</button>
-      <button class="tab" role="tab" aria-selected="false">Pines</button>
-    </div>
-    <div class="tabpanel on" role="tabpanel"><img src="porton-grafcet.png" alt="Grafcet del portón con siete etapas" data-zoom data-group="porton-d" data-cap="Grafcet del docente redibujado: ciclo normal (E0 a E4) y ruta de emergencia (E5 y E6)." loading="lazy"><p>Siete etapas: ciclo normal de E0 a E4 y ruta de emergencia en E5 y E6. Solo una etapa está activa a la vez.</p></div>
-    <div class="tabpanel" role="tabpanel"><img src="porton-ladder1.png" alt="Escalones de E1 y E2 en OpenPLC Editor" data-zoom data-group="porton-d" data-cap="Escalones de E1 y E2 en OpenPLC Editor, en simulación." loading="lazy"><p>Cada etapa es una variable con su escalón: se activa, se mantiene con un contacto de retención y se apaga cuando entra la siguiente.</p></div>
-    <div class="tabpanel" role="tabpanel"><img src="porton-esquema.png" alt="Esquema de conexión del portón con la placa OpenPLC" data-zoom data-group="porton-d" data-cap="Esquema de conexión del portón con la placa OpenPLC MicroPLC Nano V1.2." loading="lazy"><p>Dos relés forman el puente H del motor, otros dos manejan las luces verde y roja. La amarilla sale directo del pin D9 con un LED y una resistencia de 220 Ω.</p></div>
-    <div class="tabpanel" role="tabpanel"><img src="porton-pines.png" alt="Configuración de la placa Arduino Nano y mapeo de pines" data-zoom data-group="porton-d" data-cap="Configuración de la placa (Arduino Nano) y mapeo de pines en OpenPLC Editor." loading="lazy"><p>Cinco entradas en los pines 2 a 6 y cinco salidas en los pines 7, 8, 12, 13 y 9.</p></div>
-  </div>
-  <div class="links">
-    <a class="btn btn-dark" href="https://drive.google.com/file/d/1aYp_dR16X-eEaFJS_-s3R8GhcqDDpdTf/view?usp=sharing" target="_blank" rel="noopener">Ver el video del laboratorio</a>
-  </div>
- </div>
 </section>
 
 <!-- ===================== GUILLOTINA ===================== -->
@@ -206,10 +114,11 @@
  <div class="wrap">
   <div class="band-top">
     <div class="rv">
-      <span class="kicker">Laboratorio 2</span>
+      <span class="kicker">Laboratorio 1</span>
       <h2 id="t-guillotina">Guillotina industrial</h2>
       <p class="desc">Una guillotina a escala que corta plástico a medida. Una cinta lleva el material hasta la zona de corte, la hoja baja 3 segundos y una segunda cinta cuenta las piezas que salen.</p>
       <p class="desc">Al llegar a un lote de 10 piezas todo se detiene y un piloto parpadea. El pulsador de parada la frena en cualquier momento. Es el ejercicio 9 del Capítulo III, Contadores.</p>
+      <a class="btn btn-dark sim-jump" href="#simGuillotina">▶ Ir a la simulación de la guillotina</a>
     </div>
     <div class="hero-photo rv">
       <img src="guillotina-sensor.jpg" alt="Prueba del sensor acercando una pieza metálica a la cinta" data-zoom data-group="guillotina" data-cap="Prueba del sensor: se acerca una pieza metálica a la cinta para simular la llegada del material a la zona de corte.">
@@ -308,6 +217,112 @@
   </div>
   <div class="links">
     <a class="btn btn-dark" href="https://drive.google.com/file/d/13TgcIGxE5eMZ-kC3IKfERicHykQrlUh5/view?usp=sharing" target="_blank" rel="noopener">Ver el video del laboratorio</a>
+  </div>
+ </div>
+</section>
+
+<!-- ===================== PORTÓN ===================== -->
+<section id="porton" class="band sun" aria-labelledby="t-porton">
+ <div class="wrap">
+  <div class="band-top">
+    <div class="rv">
+      <span class="kicker">Laboratorio 2</span>
+      <h2 id="t-porton">Portón automático</h2>
+      <p class="desc">Un portón corredizo a escala sobre un riel de aluminio, movido por un motorreductor con piñón y cremallera. Lo gobierna una placa OpenPLC MicroPLC Nano V1.2, programada en escalera a partir del Grafcet que resolvió el docente en clase.</p>
+      <p class="desc">Se abre con un pulsador, se cierra solo a los 30 segundos y avisa su estado con tres luces. Una emergencia lo detiene; para seguir hay que presionar Reset, que lo cierra y lo devuelve al inicio.</p>
+      <a class="btn btn-dark sim-jump" href="#simPorton">▶ Ir a la simulación del portón</a>
+    </div>
+    <div class="hero-photo rv">
+      <img src="porton-energizado.jpg" alt="Maqueta del portón energizada con caja de mando de tres pulsadores" data-zoom data-group="porton" data-cap="Maqueta energizada: PLC con sus LEDs encendidos, caja de mando con tres pulsadores y portón sobre su riel.">
+      <div class="badge-float">7 etapas<small>Grafcet pasado a escalera</small></div>
+    </div>
+  </div>
+
+  <h3 class="subtitle">Cómo funciona</h3>
+  <div class="steps">
+    <div class="step rv"><h4>Cerrado</h4><p>Luz roja. Espera que alguien presione el pulsador verde.</p></div>
+    <div class="step rv"><h4>Abriendo</h4><p>Luz amarilla mientras el motor mueve el portón hasta el final de carrera de abierto.</p></div>
+    <div class="step rv"><h4>Abierto</h4><p>Luz verde y arranca un temporizador de 30 s.</p></div>
+    <div class="step rv"><h4>Cerrando</h4><p>Cierra por pulsador o a los 30 s, otra vez con luz amarilla, y vuelve a rojo.</p></div>
+  </div>
+  <p class="note rv">Con el paro de emergencia todo se apaga y el portón no se mueve hasta que se presiona Reset.</p>
+
+  <h3 class="subtitle">Simulador del portón</h3>
+  <div class="sim" id="simPorton">
+    <div class="sim-head"><h3>Caja de mando virtual</h3><span class="live">Programa corriendo</span></div>
+    <p class="sim-sub">Presiona los tres pulsadores como en la maqueta. La lógica es la misma escalera del informe, escalón por escalón.</p>
+    <div class="sim-grid">
+      <div>
+        <div class="scene">
+          <svg viewBox="0 0 720 300" role="img" aria-label="Portón corredizo que se abre y se cierra">
+            <defs>
+              <pattern id="bars" width="20" height="10" patternUnits="userSpaceOnUse"><rect width="20" height="10" fill="#E9EEF8"/><rect x="8" width="4" height="10" fill="#8C97B5"/></pattern>
+            </defs>
+            <rect x="0" y="252" width="720" height="48" fill="#C9D3EC"/>
+            <rect x="388" y="120" width="300" height="132" rx="8" fill="#D9E0F3"/>
+            <text x="538" y="190" text-anchor="middle" font-family="Figtree,sans-serif" font-weight="700" font-size="14" fill="#8C97B5">muro</text>
+            <rect x="100" y="250" width="590" height="8" rx="4" fill="#A9B3CE"/>
+            <rect x="52" y="60" width="50" height="192" rx="8" fill="#6B76A0"/>
+            <rect x="388" y="196" width="60" height="54" rx="10" fill="#FFC736" stroke="#17163B" stroke-width="3"/>
+            <g id="pgGate">
+              <rect x="0" y="96" width="280" height="154" rx="6" fill="url(#bars)" stroke="#17163B" stroke-width="3"/>
+              <rect x="0" y="96" width="280" height="10" fill="#17163B" opacity=".75"/>
+              <rect x="0" y="150" width="280" height="8" fill="#17163B" opacity=".25"/>
+            </g>
+            <rect id="pgFCC" x="104" y="236" width="8" height="14" rx="2" fill="#C7CCDD"/>
+            <rect id="pgFCA" x="372" y="236" width="8" height="14" rx="2" fill="#C7CCDD"/>
+            <rect x="60" y="24" width="34" height="96" rx="12" fill="#17163B"/>
+            <circle id="pgLR" cx="77" cy="41" r="10" fill="#4A2A2F"/>
+            <circle id="pgLY" cx="77" cy="72" r="10" fill="#4D4420"/>
+            <circle id="pgLG" cx="77" cy="103" r="10" fill="#1F4A33"/>
+            <text x="116" y="286" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">FCC</text>
+            <text x="354" y="286" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72">FCA</text>
+            <text id="pgPos" x="640" y="286" text-anchor="end" font-family="Figtree,sans-serif" font-weight="700" font-size="13" fill="#4A4A72"></text>
+          </svg>
+        </div>
+        <div class="msg" id="pgMsg" role="status" aria-live="polite"></div>
+        <div class="controls">
+          <button class="push g" id="pgP"><i></i>P: Pulsador</button>
+          <button class="push r" id="pgE"><i></i>Emergencia</button>
+          <button class="push y" id="pgR"><i></i>Reset</button>
+          <span class="seg" role="group" aria-label="Velocidad de la simulación">
+            <button data-speed="1" aria-pressed="true">x1</button><button data-speed="5" aria-pressed="false">x5</button><button data-speed="10" aria-pressed="false">x10</button>
+          </span>
+        </div>
+        <p class="help">Prueba esto: abre, deja pasar los 30 s (usa x10 para acelerar), presiona Emergencia en pleno movimiento y recupera con Reset.</p>
+      </div>
+      <div class="side">
+        <div class="box"><h4>Etapa activa del Grafcet</h4><div class="chips" id="pgChips"></div>
+          <p class="help" style="margin-top:10px">Temporizador TIM1 (30 s)</p><div class="bar"><i id="pgTim"></i></div></div>
+        <div class="box"><h4>Entradas del PLC</h4><div class="leds" id="pgIn"></div></div>
+        <div class="box"><h4>Salidas del PLC</h4><div class="leds" id="pgOut"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <h3 class="subtitle">La maqueta real</h3>
+  <div class="gallery">
+    <figure data-zoom data-group="porton" tabindex="0" data-cap="Maqueta del portón vista de frente: lámina con reja, riel de aluminio y motorreductor con cremallera."><img src="porton-frente.jpg" alt="Portón visto de frente con su reja y el motorreductor" loading="lazy"><figcaption>Portón de frente: reja, riel y motorreductor.</figcaption></figure>
+    <figure data-zoom data-group="porton" tabindex="0" data-cap="Maqueta vista por detrás: carcasa del motorreductor y cremallera sobre el portón."><img src="porton-atras.jpg" alt="Portón visto por detrás con la cremallera" loading="lazy"><figcaption>Por detrás: la cremallera sobre el portón.</figcaption></figure>
+    <figure data-zoom data-group="porton" tabindex="0" data-cap="Maqueta energizada: PLC con sus LEDs encendidos, caja de mando con tres pulsadores y portón sobre su riel."><img src="porton-energizado.jpg" alt="Maqueta energizada con LEDs de la placa encendidos" loading="lazy"><figcaption>Energizada, con los LEDs de la placa.</figcaption></figure>
+    <figure data-zoom data-group="porton" tabindex="0" data-cap="Accionando el pulsador verde de la caja de mando durante la prueba."><img src="porton-pulsador.jpg" alt="Una mano presiona el pulsador verde de la caja de mando" loading="lazy"><figcaption>Probando el pulsador verde.</figcaption></figure>
+  </div>
+
+  <h3 class="subtitle">Detrás del programa</h3>
+  <div class="panel" data-tabs>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="true">Grafcet</button>
+      <button class="tab" role="tab" aria-selected="false">Escalera</button>
+      <button class="tab" role="tab" aria-selected="false">Conexiones</button>
+      <button class="tab" role="tab" aria-selected="false">Pines</button>
+    </div>
+    <div class="tabpanel on" role="tabpanel"><img src="porton-grafcet.png" alt="Grafcet del portón con siete etapas" data-zoom data-group="porton-d" data-cap="Grafcet del docente redibujado: ciclo normal (E0 a E4) y ruta de emergencia (E5 y E6)." loading="lazy"><p>Siete etapas: ciclo normal de E0 a E4 y ruta de emergencia en E5 y E6. Solo una etapa está activa a la vez.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="porton-ladder1.png" alt="Escalones de E1 y E2 en OpenPLC Editor" data-zoom data-group="porton-d" data-cap="Escalones de E1 y E2 en OpenPLC Editor, en simulación." loading="lazy"><p>Cada etapa es una variable con su escalón: se activa, se mantiene con un contacto de retención y se apaga cuando entra la siguiente.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="porton-esquema.png" alt="Esquema de conexión del portón con la placa OpenPLC" data-zoom data-group="porton-d" data-cap="Esquema de conexión del portón con la placa OpenPLC MicroPLC Nano V1.2." loading="lazy"><p>Dos relés forman el puente H del motor, otros dos manejan las luces verde y roja. La amarilla sale directo del pin D9 con un LED y una resistencia de 220 Ω.</p></div>
+    <div class="tabpanel" role="tabpanel"><img src="porton-pines.png" alt="Configuración de la placa Arduino Nano y mapeo de pines" data-zoom data-group="porton-d" data-cap="Configuración de la placa (Arduino Nano) y mapeo de pines en OpenPLC Editor." loading="lazy"><p>Cinco entradas en los pines 2 a 6 y cinco salidas en los pines 7, 8, 12, 13 y 9.</p></div>
+  </div>
+  <div class="links">
+    <a class="btn btn-dark" href="https://drive.google.com/file/d/1aYp_dR16X-eEaFJS_-s3R8GhcqDDpdTf/view?usp=sharing" target="_blank" rel="noopener">Ver el video del laboratorio</a>
   </div>
  </div>
 </section>
