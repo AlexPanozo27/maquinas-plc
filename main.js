@@ -102,7 +102,7 @@
 
   /* Enlace activo en el menú */
   const links = U.$$('.nav a.lnk');
-  const secs = ['proyectos', 'porton', 'guillotina', 'cinta', 'equipo'].map(id => document.getElementById(id));
+  const secs = ['proyectos', 'simulaciones', 'guillotina', 'porton', 'cinta', 'equipo'].map(id => document.getElementById(id));
   if ('IntersectionObserver' in window) {
     const so = new IntersectionObserver(es => es.forEach(e => {
       if (e.isIntersecting) links.forEach(l => l.classList.toggle('on', l.getAttribute('href') === '#' + e.target.id));
